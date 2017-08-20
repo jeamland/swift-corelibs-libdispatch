@@ -254,6 +254,10 @@ LT_INIT([disable-static])
 AC_PROG_INSTALL
 AC_PATH_PROGS(MIG, mig)
 AC_PATH_PROG(DTRACE, dtrace)
+case $target_os in
+ freebsd*)
+  DTRACE=''
+esac
 AS_IF([test "x$DTRACE" != "x"], [use_dtrace=true],[
   use_dtrace=false
   CPPFLAGS="$CPPFLAGS -DDISPATCH_USE_DTRACE=0"
